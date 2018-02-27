@@ -1,0 +1,18 @@
+$mat-toolbar-height-desktop: 64px !default;
+$mat-toolbar-height-mobile-portrait: 56px !default;
+$mat-toolbar-height-mobile-landscape: 48px !default;
+
+.app-inner {
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	height: calc(100vh - #{$mat-toolbar-height-desktop});
+	display: flex;
+	flex-direction: row;
+}
+
+@media ($mat-xsmall) {
+	.app-inner {
+		height: calc(100vh - #{$mat-toolbar-height-mobile-portrait});
+	}
+}

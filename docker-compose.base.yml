@@ -1,0 +1,47 @@
+version: '2'
+
+services:
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    image: mybudget/nginx
+    volumes:
+      - ./api:/var/www/api
+      - ./app:/var/www/app
+    networks:
+      - net-mybudget
+
+  api:
+    build:
+      context: ./docker/api
+      dockerfile: Dockerfile
+    image: mybudget/api
+    volumes:
+      - ./api:/var/www/api
+    networks:
+      - net-mybudget 
+
+  app:
+    build:
+      context: ./docker/app
+      dockerfile: Dockerfile
+    image: mybudget/app
+    volumes:
+      - ./app:/var/www/app
+    networks:
+      - net-mybudget 
+
+  redis:
+    image: redis:alpine
+    networks:
+      - net-mybudget
+    volumes:
+      - redisdata-mybudget:/data
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysqldata-mybudget:/var/lib/mysql
+    networks:
+      - net-mybudget

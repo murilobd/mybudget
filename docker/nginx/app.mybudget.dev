@@ -1,0 +1,22 @@
+server {
+    listen 80;
+    server_name app.mybudget.dev;
+    root /var/www/app/dist;
+    
+    charset utf-8;
+    include expires.conf;
+
+    access_log off;
+    error_log  /var/log/nginx/app.mybudget-error.log error;
+
+    location / {
+        index index.html index.htm;
+        try_files $uri $uri/ /index.html =404;
+    }
+
+    error_page 404 /index.html;
+
+    location ~ /\.ht {
+        deny all;
+    }
+}

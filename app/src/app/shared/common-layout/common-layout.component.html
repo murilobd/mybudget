@@ -1,0 +1,36 @@
+<div class="app mat-typography">
+	<mat-toolbar class="main-header" color="primary">
+		<div class="branding">
+			<div class="logo"></div>
+		</div>
+		<div class="space-header" fxFlex></div>
+		<button [routerLink]="['/user', 'stocks']" mat-button>
+			Stocks
+			<mat-icon aria-hidden="true" aria-label="Ações da bolsa de valor do usuário">trending_up</mat-icon>
+		</button>
+
+		<button [matMenuTriggerFor]="user" mat-icon-button class="ml-xs">
+			<mat-icon>person</mat-icon>
+		</button>
+		<mat-menu #user="matMenu" x-position="before">
+			<!-- <button mat-menu-item>
+				<mat-icon>account_box</mat-icon>
+				Profile
+			</button> -->
+
+			<button mat-menu-item (click)="logout()">
+				<mat-icon>exit_to_app</mat-icon>
+				Logout
+			</button>
+		</mat-menu>
+	</mat-toolbar>
+
+
+	<mat-sidenav-container class="app-inner">
+		<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="center start" class="mat-card-top">
+			<div fxFlex.gt-sm="80" fxFlex="100">
+				<router-outlet></router-outlet>
+			</div>
+		</div>
+	</mat-sidenav-container>
+</div>

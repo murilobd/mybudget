@@ -1,0 +1,33 @@
+@import '~@angular/material/theming';
+
+@import "app/variables";
+@import "app/main-header";
+@import "app/main-panel";
+@import "app/utilities/utilities";
+@import "app/auth";
+
+@include mat-core();
+
+$mybudget-app-primary: mat-palette($mat-teal);
+$mybudget-app-accent:  mat-palette($mat-cyan, A200, A100, A400);
+$mybudget-app-theme:   mat-light-theme($mybudget-app-primary, $mybudget-app-accent);
+
+// Include the default theme styles.
+@include angular-material-theme($mybudget-app-theme);
+
+
+body {
+	margin: 0;
+	// background: #424242;
+}
+
+// @import "scss/material.variables";
+// @import "scss/material.themes";
+// // Core Variables and Mixins
+// @import "scss/app.variables";
+// @import "scss/mixins";
+// // Core Styles
+// @import "scss/core";
+// @import "scss/material";
+// @import "scss/utilities/utilities";
+

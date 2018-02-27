@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+docker build -f docker/nginx/Dockerfile -t mybudget/nginx ./docker/nginx
+docker build -f docker/api/Dockerfile -t mybudget/api ./docker/api
+docker build -f docker/app/Dockerfile -t mybudget/app ./docker/app

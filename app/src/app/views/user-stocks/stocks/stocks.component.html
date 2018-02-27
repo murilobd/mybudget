@@ -1,0 +1,43 @@
+<mat-table [dataSource]="dataSource" #table>
+
+	<ng-container matColumnDef="symbol">
+		<mat-header-cell *matHeaderCellDef> STOCK </mat-header-cell>
+		<mat-cell *matCellDef="let stock"> {{ stock.symbol }} </mat-cell>
+	</ng-container>
+
+	<ng-container matColumnDef="buy_price">
+		<mat-header-cell *matHeaderCellDef> AVG buy price </mat-header-cell>
+		<mat-cell *matCellDef="let stock"> {{ stock.avg_buy_price | currency:'BRL':'symbol':'1.2-2' }} </mat-cell>
+	</ng-container>
+
+	<ng-container matColumnDef="last_price">
+		<mat-header-cell *matHeaderCellDef> Last price </mat-header-cell>
+		<mat-cell *matCellDef="let stock">
+			<span [matTooltip]="formatLastPriceDate(stock.last_date)">
+				{{ stock.last_price | currency:'BRL':'symbol':'1.2-2' }}
+			</span>
+		</mat-cell>
+	</ng-container>
+
+	<ng-container matColumnDef="qtt">
+		<mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+		<mat-cell *matCellDef="let stock"> {{ stock.quantity }} </mat-cell>
+	</ng-container>
+
+	<ng-container matColumnDef="total_profit_percentage">
+		<mat-header-cell *matHeaderCellDef> Profit % </mat-header-cell>
+		<mat-cell *matCellDef="let stock"> {{ stock.total_profit_percentage | number:'1.2-2' }}% </mat-cell>
+	</ng-container>
+
+	<ng-container matColumnDef="actions">
+		<mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+		<mat-cell *matCellDef="let stock">
+			<button mat-button color="warn" (click)="removeStock(stock)">
+				<mat-icon>remove_circle</mat-icon>
+			</button>
+		</mat-cell>
+	</ng-container>
+
+	<mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+	<mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+</mat-table>

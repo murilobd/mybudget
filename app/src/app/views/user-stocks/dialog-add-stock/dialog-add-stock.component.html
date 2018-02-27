@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Add stock to your portfolio</h2>
+<mat-dialog-content>
+	<form [formGroup]="form" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%">
+		<div fxFlex="100%">
+			<mat-form-field fxFlex="100%">
+				<input matInput type="text" placeholder="Stock" formControlName="stock" [matAutocomplete]="stockAuto">
+			</mat-form-field>
+			<mat-autocomplete #stockAuto="matAutocomplete" [displayWith]="displayStockAutocompleteFn">
+				<mat-option *ngFor="let stock of searchedStocks$ | async" [value]="stock">
+					{{ stock.symbol }} <small>{{ stock.name }}</small>
+				</mat-option>
+			</mat-autocomplete>
+
+		</div>
+
+		<div fxFlex="100%" fxLayoutGap="10px">
+			<mat-form-field fxFlex="50%">
+				<input matInput type="number" placeholder="Quantity" formControlName="quantity">
+			</mat-form-field>
+
+			<mat-form-field fxFlex="50%">
+				<span matPrefix>R$&nbsp;</span>
+				<input matInput type="number" placeholder="Price" formControlName="price">
+			</mat-form-field>
+		</div>
+
+		<div fxFlex="100%" fxLayoutGap="10px">
+			<mat-form-field fxFlex="50%">
+				<input matInput [matDatepicker]="datePicker" placeholder="Date" formControlName="date">
+				<mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+				<mat-datepicker touchUi="true" disabled="false" #datePicker></mat-datepicker>
+			</mat-form-field>
+
+			<mat-form-field fxFlex="50%">
+				<span matPrefix>R$&nbsp;</span>
+				<input matInput type="number" placeholder="Exchange fee" formControlName="fee">
+			</mat-form-field>
+		</div>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Cancel</button>
+	<button mat-raised-button color="primary" [disabled]="!form.valid" (click)="submit()">Add</button>
+</mat-dialog-actions>
