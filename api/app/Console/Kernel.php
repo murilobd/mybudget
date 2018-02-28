@@ -26,7 +26,9 @@ class Kernel extends ConsoleKernel
 	{
 		$schedule->command('mybudget:sendUsersStockDailyEmail')
 				 ->weekdays()
-				 ->dailyAt('18:00')
+				 ->dailyAt('18:01')
+				 ->dailyAt('18:17')
+				 ->dailyAt('18:35')
 				 ->timezone('America/Sao_Paulo');
 	}
 
