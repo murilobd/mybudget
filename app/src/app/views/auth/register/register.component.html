@@ -12,6 +12,7 @@
 					</mat-form-field>
 					<small *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched" class="mat-text-warn">Name is mandatory.</small>
 					<small *ngIf="form.controls['name'].hasError('minlength') && form.controls['name'].touched" class="mat-text-warn">Your name should have, at least, 2 characters.</small>
+					<small *ngIf="form.controls['name'].hasError('backend') && form.controls['name'].touched" class="mat-text-warn">{{ backend_errors.name }}</small>
 				</div>
 				<div class="pb-1">
 					<mat-form-field style="width: 100%">
@@ -19,6 +20,7 @@
 					</mat-form-field>
 					<small *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="mat-text-warn">E-mail is mandatory.</small>
 					<small *ngIf="form.controls['email'].hasError('email') && form.controls['email'].touched" class="mat-text-warn">This e-mail isn't valid.</small>
+					<small *ngIf="form.controls['email'].hasError('backend') && form.controls['email'].touched" class="mat-text-warn">{{ backend_errors.email }}</small>
 				</div>
 				<div class="pb-1">
 					<mat-form-field style="width: 100%">
@@ -26,6 +28,7 @@
 					</mat-form-field>
 					<small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" class="mat-text-warn">Password is mandatory.</small>
 					<small *ngIf="form.controls['password'].hasError('minlength') && form.controls['password'].touched" class="mat-text-warn">Your password should have at least 6 characters.</small>
+					<small *ngIf="form.controls['password'].hasError('backend') && form.controls['password'].touched" class="mat-text-warn">{{ backend_errors.password }}</small>
 				</div>
 				<div class="pb-1">
 					<mat-form-field style="width: 100%">
@@ -40,5 +43,13 @@
 				<a [routerLink]="['/auth/signin']">Already has an account? Sign in.</a>
 			</div>
 		</form>
+	</mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="errors?.length > 0">
+	<mat-card-content>
+		<ul>
+			<li *ngFor="let err of errors" class="mat-text-warn">{{ err }}</li>
+		</ul>
 	</mat-card-content>
 </mat-card>

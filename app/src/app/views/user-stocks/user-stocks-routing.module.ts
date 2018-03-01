@@ -7,8 +7,8 @@ const routes: Routes = [{
 	path: 'user',
 	component: CommonLayoutComponent,
 	children: [
+		{ path: 'stocks', component: UserStocksComponent },
 		{ path: '', redirectTo: '/user/stocks' },
-		{ path: 'stocks', component: UserStocksComponent }
 	]
 }];
 
