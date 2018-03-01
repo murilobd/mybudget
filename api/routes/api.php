@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 Route::middleware('api')->prefix('v1/auth')->namespace('Auth')->group(function() {
 	Route::post('register', 'RegisterController@register');
 	Route::post('login', 'LoginController@login');
+	Route::post('forgot-password', 'ForgotPasswordController@sendResetLinkEmail');
+	Route::post('reset-password', 'ResetPasswordController@reset');
 
 	Route::post('refreshToken', 'LoginController@refreshToken');
 });
