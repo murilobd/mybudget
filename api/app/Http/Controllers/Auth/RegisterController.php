@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -67,6 +69,8 @@ class RegisterController extends Controller
 			return $this->respondValidationFailed($validator->errors());
 
 		event(new Registered($user = $this->create($request->all())));
+
+		$this->guard()->login($user);
 
 		return $this->registered($request, $user);
 	}
