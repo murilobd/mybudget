@@ -164,4 +164,42 @@ export class AuthService {
 		return Observable.throw("User logged out");
 	}
 
+	/**
+	 * Forgot password
+	 *
+	 * @param: string email User's email
+	 * @return: 
+	 */
+	public forgotPassword(email: string): Observable<any> {
+		return this.http.post('auth/forgot-password', {
+							email: email
+						})
+						.map(this.handleHttpService.handleSuccess)
+						.catch(this.handleHttpService.handleError);
+	}
+
+	/**
+	 * Reset password
+	 *
+	 * @param: string email User's email
+	 * @param: string password New password
+	 * @param: string password_confirmation New password confirmation
+	 * @param: string token Token to reset password
+	 * @return: 
+	 */
+	public resetPassword(email: string, password: string, password_confirmation: string, token: string): Observable<any> {
+		return this.http.post('auth/reset-password', {
+							email: email,
+							password: password,
+							password_confirmation: password_confirmation,
+							token: token,
+						})
+						.map((res) => {
+							this.isLoggedIn = true;
+							return res;
+						})
+						.map(this.handleLogin)
+						.catch(this.handleHttpService.handleError);
+	}
+
 }

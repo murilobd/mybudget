@@ -32,7 +32,7 @@
 <mat-card *ngIf="errors?.length > 0">
 	<mat-card-content>
 		<ul>
-			<li *ngFor="let err of errors">{{ err }}</li>
+			<li *ngFor="let err of errors" class="mat-text-warn">{{ err }}</li>
 		</ul>
 	</mat-card-content>
 </mat-card>
